@@ -1,0 +1,17 @@
+version: '3'
+services:
+  app:
+    build: .
+    tty: true
+    volumes:
+      - ./app:/go/src/app
+    depends_on:
+      - mysql
+    ports:
+      - 8000:8000
+
+  mailhog:
+    image: mailhog/mailhog:latest
+    ports:
+      - "8025:8025" # MailhogのWebとAPI用のポート
+      - "1025:1025" # SMTPポート
